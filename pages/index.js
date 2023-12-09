@@ -1,12 +1,49 @@
-import Head from "next/head";
+import Head from "next/head"; // for SEO
+import useMediaQuery from "@/hooks/useMediaQuery";
 
-export default function MainPage() {
+// import the styles for the desktop and mobile versions
+import desktop_styles from "@/styles/HomePage/desktop.styles.module.css";
+import mobile_styles from "@/styles/HomePage/mobile.styles.module.css";
+import VerticalNavigationBar from "@/components/VericalNavigatiobBar";
+
+
+// for the desktop version, all the necessary sub-components are written below
+
+
+function DesktopVersion() {
   return (
-    <div style={{ backgroundColor: "#0F0D13", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <>
+      {/* head tag for SEO */}
       <Head>
-        <title>Home</title>
+        <title>Maruf Bin Salim</title>
+        <meta name="home page" content="Home Page" />
       </Head>
-      <img src="/self_potrait.png" alt="pfp" style={{ height: "250px", width: "250px", border: "2px solid #ebebeb20", padding: "5px", borderRadius: "50%"}} />
+
+
+      {/* main container for the desktop version */}
+      <div className={desktop_styles.main_container}>
+
+        <VerticalNavigationBar />
+
+      </div>
+
+
+    </>
+  );
+}
+
+// for the mobile version, all the necessary sub-components are written below
+
+function MobileVersion() {
+  return (
+    <div>
+      Mobile
     </div>
   );
+}
+
+
+// layout for the main page
+export default function MainPage() {
+  return useMediaQuery("(max-width: 768px)") ? <MobileVersion /> : <DesktopVersion />;
 }
